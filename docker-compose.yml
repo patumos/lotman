@@ -1,0 +1,18 @@
+version: "3.3"
+services:
+  web:
+    build: .
+    command: python -u app.py
+    ports:
+      - "127.0.0.1:5999:5000"
+    volumes:
+      - ./app:/lotman
+    links:
+      - db
+  db:
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    restart: always
+#volumes:
+  #mongodata:

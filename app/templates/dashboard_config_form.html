@@ -1,0 +1,91 @@
+{% extends 'dashboard.html' %}
+
+{% block dashboard_content %}
+<h1>Config Form</h1>
+<!--
+    {{ config.to_dict() }} -->
+
+<form method='post'>
+    <div class='row mb-2'>
+    <div class="form-floating">
+        <input type=date class='form-control w-50 float-start' name='period' value='{{ config.period.strftime("%Y-%m-%d") if config.period else '' }}' {{ "readonly" if config.id else "" }} />
+        <label for="floatingInputValue">Period: </label>
+    </div>
+    </div>
+    
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+<th>รางวัลที่ 1</th>
+<th>เลขหน้า 3 ตัว</th>
+<th>เลยท้าย 3 ตัว</th>
+<th>เลยท้าย 2 ตัว</th>
+        </tr>
+    </thead>
+    <tbody>
+        <td>
+            <input type="text" name="hi"  value="{{ config.hi }}" class='form-control' ></td>
+        <td>
+            <input type="text" name="front3_1" class='float-start w-50 form-control'  value="{{ config.front3[0] or '' }}" >
+            <input type="text" name="front3_2"  class='float-start w-50 form-control' value="{{ config.front3[1] or '' }}" ></td>
+        <td>
+            <input type="text" name="tail3_1" class='float-start w-50 form-control' value="{{ config.tail3[0] or '' }}" >
+            <input type="text" name="tail3_2" class='float-start w-50 form-control' value="{{ config.tail3[1] or '' }}" ></td>
+        <td>
+            <input type="text" name="tail2" class='form-control'  value="{{ config.tail2 or '' }}" ></td>
+    </tbody>
+</table>
+            {% if config.id %}
+            <!-- 
+            <input type=submit value='Cal Number' class='btn btn-primary' name='calNumberBtn'/>
+            <hr> -->
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>เลขรางวัล</h2>
+                    <ul>
+                    {% for k, v in config.numbers.items() %}
+                    <li>{{ k | play_opt }}: {{ ", ".join(v) }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h2>อัตราต่อรอง</h2>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <th>เลข</th>
+                            <th>อัตรารางวัล (THB)</th>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>{{ "3hi" | play_opt }}</td>
+                            <td><input type='number' name='prize_3hi' value='{{ config.prize['3hi'] }}'/></td>
+                        </tr>
+                        <tr>
+                            <td>{{ "3lo" | play_opt }}</td>
+                            <td><input type='number' name='prize_3lo' value='{{ config.prize['3lo'] }}'/></td>
+                        </tr>
+                        <tr>
+
+                            <td>{{ "2hilo" | play_opt }}</td>
+                            <td><input type='number' name='prize_2hilo' value='{{ config.prize['2hilo'] }}'/></td>
+                        </tr>
+                        <tr>
+                            <td>{{ "swap" | play_opt }}</td>
+                            <td><input type='number' name='prize_swap' value='{{ config.prize['swap'] }}'/></td>
+                        </tr>
+                        <tr>
+                            <td>{{ "runhi" | play_opt }}</td>
+                            <td><input type='number' name='prize_runhi' value='{{ config.prize['runhi'] }}'/></td>
+                        </tr>
+                        <tr>
+                            <td>{{ "runlo" | play_opt }}</td>
+                            <td><input type='number' name='prize_runlo' value='{{ config.prize['runlo'] }}'/></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>  
+            {% endif %}
+        <input type=submit value='Save' class='btn btn-primary' name='saveBtn'>
+</form>
+{% endblock %}

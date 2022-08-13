@@ -1,0 +1,65 @@
+{% extends 'dashboard.html' %}
+
+{% block dashboard_content %}
+<h1>Photo Messages</h1>
+<table class="table table-striped table-bordered">
+<thead>
+    <tr>
+        <th>ID.</th>
+        <th>Photo</th>
+        <th>Profile</th>
+        <th>Uploaded At</th>
+        <td>Status</td>
+    </tr>
+</thead>
+<tbody>
+    
+{% for st in  photos %}
+    <tr>
+        <td>{{ st._id }}</td>
+        <td><a href='{{ url_for('gridfs_img', messageId=st.messageId)  }}' target="_blank"><img src='{{ url_for('gridfs_img', messageId=st.messageId)  }}' style='width:150px'></a></td>
+        {% if st.profile %}
+        <td>{{ st.profile['display_name'] }}<br> <img src='{{ st.profile['picture_url'] }}' style='width:100px'></td>
+        {% else %}
+        <td> - </td>
+        {% endif %}
+        <td>{{ st.uploadDate }}</td>
+        <td>
+            {% if st.messageId in pcs and pcs[st.messageId] == True %}
+            <input type='checkbox' value='{{ st.messageId }}' class='photoCheckbox' checked>
+            {% else %}
+            <input type='checkbox' value='{{ st.messageId }}' class='photoCheckbox'>
+            {% endif %}
+        
+        </td>
+    </tr>    
+{% endfor %}
+</tbody>
+</table>
+{% endblock %}
+{% block footerScript %}
+<script charset="utf-8">
+$(document).ready(function(){
+    console.log("abc ...");
+    $('.photoCheckbox').change(function() {
+        var $this = $(this);
+        console.log($this.attr("value"));
+        if($this.is(':checked')) {
+            console.log("check");
+        }else {
+            console.log("uncheck");
+        }
+        $.post("{{ url_for("checkPhoto") }}", {id: $this.attr("value"), isCheck: $this.is(':checked')})
+        .done(function(data){
+            console.log(data);
+            location.reload();
+        })
+        .fail(function(data){
+            console.log(data);
+        });
+
+    });
+});
+</script>
+{% endblock %}
+

@@ -1,0 +1,47 @@
+{% extends 'dashboard.html' %}
+
+{% block dashboard_content %}
+<h1>Orders @{{ lm.lotConfigMan.period.strftime('%Y-%m-%d') }}</h1>
+<form method='post'>
+    <div class='row'>
+        <div class="col-9">
+    <input type=text  class='form-control col-9' placeholder='Enter Buyer Name' name='buyerName' />
+        </div>
+    <input type='submit' value='Search' name='searchBtn' class='btn btn-primary col-3' />
+    </div>
+    <br>
+    <input type=submit value='Save' name='saveBtn' class='btn btn-primary' />
+<table class='table table-bordered table-striped'>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Buyer</th>
+            <th>Numbers</th>
+            <th>Confirm ?</th>
+            <th>Created At</th>
+        </tr>
+    </thead>
+    <tbody>
+{% for order in  orders %}
+<tr>
+    <td>{{ order._id  }}</td>
+    <td>{{  order.buyer }}</td>
+    <td>
+        <ul>
+        {% for i in order.numbers %}
+<!--
+    {{ i  }}   -->
+        <li>{{ i[0] | play_opt  }}@{{i[1]}} = {{ i[2] }} {{ "ใบ" if i[3] and i[3] == "leaf"  else "THB" }}</li>
+        {% endfor %}
+        </ul>
+    </td>
+    <td><input type='checkbox' name="order[]" value="{{ order._id }}" {{ "checked" if order.isConfirm else "" }} /></td>
+    <td>{{ order.created_at }}</td>
+</tr>
+
+        
+{% endfor %}
+    </tbody>
+</table>
+</form>
+{% endblock %}

@@ -1,0 +1,18 @@
+2021-04-04 21:26:04,705 - Sip2 - WARNING - Started logging with loglevel DEBUG Custom log file path not set or does not exist. Using default: /mnt/data/turec3/newturec/turec3
+2021-04-04 21:26:04,705 - Sip2 - INFO - --- BEGIN SIP communication ---
+2021-04-04 21:26:04,731 - Sip2 - INFO - --- SOCKET EXISTS ---
+2021-04-04 21:26:04,781 - Sip2 - WARNING - --- CONNECTION INFO: SSL - Server probably uses self signed certificate (or invalid!).
+2021-04-04 21:31:32,066 - Sip2 - INFO - --- BEGIN SIP communication ---
+2021-04-04 21:31:32,102 - Sip2 - INFO - --- SOCKET EXISTS ---
+2021-04-04 21:31:32,127 - Sip2 - WARNING - --- CONNECTION INFO: SSL - Server probably uses self signed certificate (or invalid!).
+2021-04-04 21:38:28,269 - Sip2 - INFO - --- BEGIN SIP communication ---
+2021-04-04 21:38:28,281 - Sip2 - INFO - --- SOCKET EXISTS ---
+2021-04-04 21:38:28,305 - Sip2 - WARNING - --- CONNECTION INFO: SSL - Server probably uses self signed certificate (or invalid!).
+2021-04-04 21:40:41,110 - Sip2 - WARNING - Started logging with loglevel DEBUG Custom log file path not set or does not exist. Using default: /mnt/data/turec3/newturec/turec3
+2021-04-04 21:40:41,110 - Sip2 - WARNING - Started logging with loglevel DEBUG Custom log file path not set or does not exist. Using default: /mnt/data/turec3/newturec/turec3
+2021-04-04 21:40:41,110 - Sip2 - INFO - --- BEGIN SIP communication ---
+2021-04-04 21:40:41,110 - Sip2 - INFO - --- BEGIN SIP communication ---
+2021-04-04 21:40:41,122 - Sip2 - INFO - --- SOCKET EXISTS ---
+2021-04-04 21:40:41,122 - Sip2 - INFO - --- SOCKET EXISTS ---
+2021-04-04 21:40:41,149 - Sip2 - WARNING - --- CONNECTION INFO: SSL - Server probably uses self signed certificate (or invalid!).
+2021-04-04 21:40:41,149 - Sip2 - WARNING - --- CONNECTION INFO: SSL - Server probably uses self signed certificate (or invalid!).

@@ -1,0 +1,68 @@
+{% extends 'dashboard.html' %}
+
+{% block dashboard_content %}
+<h1>Config</h1>
+<div class='m-2 overflow-auto'>
+    <form method='post'>
+    <input type='date' class='form-control float-start w-25 me-2' name='period' />
+    <input type='submit' class='btn  btn-primary float-start w-25' value='search' name='searchBtn' />
+    </form>
+</div>
+<a href="{{ url_for("dashboard_config_create") }}" class='btn btn-primary'>Create Config</a>
+<hr>
+<table class="table table-striped table-bordered">
+<thead>
+    <tr>
+        <th>Period</th>
+        <th>Results</th>
+        <th>Prize Setting</th>
+        <th>Numbers</th>
+        <th>Status</th>
+    </tr>
+</thead>
+<tbody>
+    
+        {% for c in configs %}
+        <!-- 
+            {{ c.to_dict() }} -->
+        <tr>
+            <td>
+                <a href="{{ url_for("dashboard_config_edit", cid=c.id) }}">{{ c.period.strftime('%Y-%m-%d')}}</a>
+            </td>
+            <td>
+                <ul>
+                    <li>
+                รางวัลที่ 1:  {{ c.hi }}
+                    </li>
+                    <li>
+                        เลขหน้า 3 ตัว:  {{ c.front3[0] }}&nbsp;&nbsp;{{ c.front3[1] }}
+                    </li>
+                    <li>
+                        เลขท้าย 3 ตัว:  {{ c.tail3[0] }}&nbsp;&nbsp;{{ c.tail3[1] }}
+                    </li>
+                    <li>
+                        เลขท้าย 2 ตัว:  {{ c.tail2  }}
+                    </li>
+            </td>
+            <td>
+                <ul>
+                {% for k, v in c.prize.items() %}
+                <li>{{ k | play_opt }}: {{ v }} THB</li>
+                {% endfor %}
+                </ul>
+            </td>
+            <td>
+                <ul>
+                {% for k, v in c.numbers.items() %}
+                <li>{{ k | play_opt }}: {{ ", ".join(v) }}</li>
+                {% endfor %}
+                </ul>
+            </td>
+            <td>
+                <a href='{{ url_for("dashboard_config_active", cid=c.id) }}' class='btn btn-{{ "danger" if c.isActive else "success" }} btn-sm'>{{ "Inactive" if c.isActive else "Make Active" }}</a>
+            </td>
+        </tr>
+        {% endfor %}
+</tbody>
+</table>
+{% endblock %}
